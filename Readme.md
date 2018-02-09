@@ -1,14 +1,14 @@
-##简介
+##简介<br>
 OAuth 2.0 定义了四种客户端授权模式：授权码模式（Authorization Code）、简化模式（implicit）、密码模式（Resource Owner Password Credential）、客户端模式（Client Credential）。
 
-##名词定义
+##名词定义<br>
 (1)**Client** 第三方应用程序，本文又称为客户端；<br>
 (2)**Resource Owner** 资源所有者，本文又称为用户；<br>
 (3)**User Agent** 用户代理，浏览器或者app；<br>
 (4)**Authorization Server** 认证服务器；<br>
 (5)**Resource Server** 资源服务器，即服务提供商存放用户生成的资源的服务器。它与认证服务器可以是同一台服务器，也可以是不同服务器；
 
-##授权模式
+##授权模式<br>
 授权码模式的特点是通过client的后台服务器，与“服务提供商”的认证服务器进行互动。 功能最完整，流程最严密。
 
 ![](AuthorizationCode.png)
@@ -77,7 +77,9 @@ Authorization Server的回复，包含了如下参数：
     }
 
 从上面代码可以看到，相关参数使用JSON格式发送（Content-Type: application/json）。此外，HTTP头信息中明确指定不得缓存。
-##简化模式
+
+##简化模式<br>
+
 简化模式（implicit grant type）不通过Client的服务器，直接在User Agent中向Authoraztion Server申请token，跳过了"Authorization Code"这个步骤，因此得名。所有步骤在User Agent中完成，令牌对Resource Owner是可见的，且Client不需要认证。
 
 ![](implicit.png)
@@ -121,7 +123,8 @@ Authorization Server回复Client的请求中包含如下参数：
 
 根据上面的D步骤，下一步浏览器会访问Location指定的网址，但是Hash部分不会发送。接下来的E步骤，服务提供商的资源服务器发送过来的代码，会提取出Hash中的令牌。
 
-##密码模式
+##密码模式<br>
+
 密码模式（Resource Owner Password Credentials Grant）中，Resource Owner向Client提供自己的用户名和密码。Client使用这些信息，向"Resource Server"索要授权。
 
 在这种模式中，Resource Owner必须把自己的密码给Client，但是Client不得储存密码。这通常用在Resource Owner对Client高度信任的情况下，比如Client是操作系统的一部分，或者由一个著名公司出品。而Authorization Server只有在其他授权模式无法执行的情况下，才能考虑使用这种模式。
@@ -165,7 +168,7 @@ Authorization Server向Client发送access_token
 
 整个过程，client不得保存用户名、密码。
 
-##客户端模式
+##客户端模式<br>
 
 客户端模式（Client Credentials Grant）指Client以自己的名义，而不是以Resource Owner的名义，向"Resource Server"进行认证。严格地说，客户端模式并不属于OAuth框架所要解决的问题。在这种模式中，Resource Owner直接向Client注册，Client以自己的名义要求"Resource Server"提供服务，其实不存在授权问题。
 
@@ -202,5 +205,6 @@ Client发出的请求，包含如下参数：
 
 
 
-##参照资料
+##参照资料<br>
+
 [理解OAuth 2.0](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)
